@@ -80,7 +80,7 @@ https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html
 `npm install`
 5. [OPTIONAL] Run the following command to verify what changes will be deployed to your AWS account:
 `cdk diff`
-7. Run the following command to deploy the infrastructure:
+7. Run the following command to deploy the infrastructure and comfirm changes when prompted:
 `cdk deploy`
 6. Once the infrastructure is deployed, cd to the directory with your key pair and ssh into the EC2 instance using ec2-user and the public IP/DNS (this will display as an output on the cli post-deployment)
 example: `ssh -i "SinatraKP.pem" ec2-user@ec2-54-206-53-245.ap-southeast-2.compute.amazonaws.com`
