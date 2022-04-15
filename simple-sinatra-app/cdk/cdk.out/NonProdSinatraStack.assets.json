@@ -1,0 +1,20 @@
+{
+  "version": "16.0.0",
+  "files": {
+    "c5e82f4afca35ae7e00543c07b2b42b6d6cc1806827418e979e34ec37e50f425": {
+      "source": {
+        "path": "NonProdSinatraStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "087901013023-ap-southeast-2": {
+          "bucketName": "cdk-hnb659fds-assets-087901013023-ap-southeast-2",
+          "objectKey": "c5e82f4afca35ae7e00543c07b2b42b6d6cc1806827418e979e34ec37e50f425.json",
+          "region": "ap-southeast-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::087901013023:role/cdk-hnb659fds-file-publishing-role-087901013023-ap-southeast-2"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

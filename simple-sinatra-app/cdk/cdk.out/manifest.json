@@ -1,0 +1,310 @@
+{
+  "version": "16.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "NonProdSinatraStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "NonProdSinatraStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "NonProdSinatraStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://087901013023/ap-southeast-2",
+      "properties": {
+        "templateFile": "NonProdSinatraStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::087901013023:role/cdk-hnb659fds-deploy-role-087901013023-ap-southeast-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::087901013023:role/cdk-hnb659fds-cfn-exec-role-087901013023-ap-southeast-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-087901013023-ap-southeast-2/c5e82f4afca35ae7e00543c07b2b42b6d6cc1806827418e979e34ec37e50f425.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "NonProdSinatraStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::087901013023:role/cdk-hnb659fds-lookup-role-087901013023-ap-southeast-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "NonProdSinatraStack.assets"
+      ],
+      "metadata": {
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcD1A309B2"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet1SubnetB31FA0A1"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet1RouteTable238E4DCA"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet1RouteTableAssociation6981B7B9"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet1DefaultRoute9BC3C98D"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet1EIP64D735BC"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet1NATGateway6E68EE13"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet2SubnetE71A2C6D"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet2RouteTableAD562325"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet2RouteTableAssociationA589F854"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet2DefaultRouteA194DB67"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet2EIPCF5634B6"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet2NATGateway7AF2E2F0"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet3Subnet21CF71FA"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet3RouteTable6E0337D4"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet3RouteTableAssociationEF0FC630"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet3DefaultRouteB099621E"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet3EIP8054A327"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPublicSubnet3NATGatewayF977DC7E"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet1Subnet0E456952"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet1RouteTableC2D91026"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet1RouteTableAssociation9D28104C"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet1DefaultRoute768C70F4"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet2SubnetCD7D7E05"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet2RouteTable3ECA1D38"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet2RouteTableAssociation6CF1F6A3"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet2DefaultRouteB6DC3D45"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet3SubnetE38EC034"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet3RouteTable4F187B41"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet3RouteTableAssociation9A2C3C2E"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcPrivateSubnet3DefaultRouteD8FC351E"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcIGW1138DA09"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-vpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppvpcVPCGW03DC3D9D"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-sg/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppsg9DCDCA81"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-ec2/InstanceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppec2InstanceRole7582E3E6"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-ec2/InstanceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppec2InstanceRoleDefaultPolicy8A026138"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-ec2/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppec2InstanceProfileA3A7465A"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-ec2/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraAppec2495AF881"
+          }
+        ],
+        "/NonProdSinatraStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValueawsserviceamiamazonlinuxlatestamznamihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-publicIp": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraApppublicIp"
+          }
+        ],
+        "/NonProdSinatraStack/Simple-Sinatra-App-publicDns": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimpleSinatraApppublicDns"
+          }
+        ],
+        "/NonProdSinatraStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/NonProdSinatraStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/NonProdSinatraStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "NonProdSinatraStack"
+    }
+  }
+}

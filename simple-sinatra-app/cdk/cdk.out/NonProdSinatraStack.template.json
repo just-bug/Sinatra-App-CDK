@@ -1,0 +1,905 @@
+{
+  "Resources": {
+    "SimpleSinatraAppvpcD1A309B2": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/Resource"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet1SubnetB31FA0A1": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/19",
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "AvailabilityZone": "ap-southeast-2a",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          },
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/Subnet"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet1RouteTable238E4DCA": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/RouteTable"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet1RouteTableAssociation6981B7B9": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet1RouteTable238E4DCA"
+        },
+        "SubnetId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet1SubnetB31FA0A1"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/RouteTableAssociation"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet1DefaultRoute9BC3C98D": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet1RouteTable238E4DCA"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "SimpleSinatraAppvpcIGW1138DA09"
+        }
+      },
+      "DependsOn": [
+        "SimpleSinatraAppvpcVPCGW03DC3D9D"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/DefaultRoute"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet1EIP64D735BC": {
+      "Type": "AWS::EC2::EIP",
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/EIP"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet1NATGateway6E68EE13": {
+      "Type": "AWS::EC2::NatGateway",
+      "Properties": {
+        "SubnetId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet1SubnetB31FA0A1"
+        },
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "SimpleSinatraAppvpcPublicSubnet1EIP64D735BC",
+            "AllocationId"
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet1/NATGateway"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet2SubnetE71A2C6D": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.32.0/19",
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "AvailabilityZone": "ap-southeast-2b",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          },
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/Subnet"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet2RouteTableAD562325": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/RouteTable"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet2RouteTableAssociationA589F854": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet2RouteTableAD562325"
+        },
+        "SubnetId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet2SubnetE71A2C6D"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/RouteTableAssociation"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet2DefaultRouteA194DB67": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet2RouteTableAD562325"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "SimpleSinatraAppvpcIGW1138DA09"
+        }
+      },
+      "DependsOn": [
+        "SimpleSinatraAppvpcVPCGW03DC3D9D"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/DefaultRoute"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet2EIPCF5634B6": {
+      "Type": "AWS::EC2::EIP",
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/EIP"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet2NATGateway7AF2E2F0": {
+      "Type": "AWS::EC2::NatGateway",
+      "Properties": {
+        "SubnetId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet2SubnetE71A2C6D"
+        },
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "SimpleSinatraAppvpcPublicSubnet2EIPCF5634B6",
+            "AllocationId"
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet2/NATGateway"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet3Subnet21CF71FA": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.64.0/19",
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "AvailabilityZone": "ap-southeast-2c",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          },
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/Subnet"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet3RouteTable6E0337D4": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/RouteTable"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet3RouteTableAssociationEF0FC630": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet3RouteTable6E0337D4"
+        },
+        "SubnetId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet3Subnet21CF71FA"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/RouteTableAssociation"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet3DefaultRouteB099621E": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet3RouteTable6E0337D4"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "SimpleSinatraAppvpcIGW1138DA09"
+        }
+      },
+      "DependsOn": [
+        "SimpleSinatraAppvpcVPCGW03DC3D9D"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/DefaultRoute"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet3EIP8054A327": {
+      "Type": "AWS::EC2::EIP",
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/EIP"
+      }
+    },
+    "SimpleSinatraAppvpcPublicSubnet3NATGatewayF977DC7E": {
+      "Type": "AWS::EC2::NatGateway",
+      "Properties": {
+        "SubnetId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet3Subnet21CF71FA"
+        },
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "SimpleSinatraAppvpcPublicSubnet3EIP8054A327",
+            "AllocationId"
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PublicSubnet3/NATGateway"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet1Subnet0E456952": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.96.0/19",
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "AvailabilityZone": "ap-southeast-2a",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private"
+          },
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet1/Subnet"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet1RouteTableC2D91026": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet1/RouteTable"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet1RouteTableAssociation9D28104C": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPrivateSubnet1RouteTableC2D91026"
+        },
+        "SubnetId": {
+          "Ref": "SimpleSinatraAppvpcPrivateSubnet1Subnet0E456952"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet1/RouteTableAssociation"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet1DefaultRoute768C70F4": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPrivateSubnet1RouteTableC2D91026"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet1NATGateway6E68EE13"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet1/DefaultRoute"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet2SubnetCD7D7E05": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.128.0/19",
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "AvailabilityZone": "ap-southeast-2b",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private"
+          },
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet2/Subnet"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet2RouteTable3ECA1D38": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet2/RouteTable"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet2RouteTableAssociation6CF1F6A3": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPrivateSubnet2RouteTable3ECA1D38"
+        },
+        "SubnetId": {
+          "Ref": "SimpleSinatraAppvpcPrivateSubnet2SubnetCD7D7E05"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet2/RouteTableAssociation"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet2DefaultRouteB6DC3D45": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPrivateSubnet2RouteTable3ECA1D38"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet2NATGateway7AF2E2F0"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet2/DefaultRoute"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet3SubnetE38EC034": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.160.0/19",
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "AvailabilityZone": "ap-southeast-2c",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private"
+          },
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet3"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet3/Subnet"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet3RouteTable4F187B41": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet3"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet3/RouteTable"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet3RouteTableAssociation9A2C3C2E": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPrivateSubnet3RouteTable4F187B41"
+        },
+        "SubnetId": {
+          "Ref": "SimpleSinatraAppvpcPrivateSubnet3SubnetE38EC034"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet3/RouteTableAssociation"
+      }
+    },
+    "SimpleSinatraAppvpcPrivateSubnet3DefaultRouteD8FC351E": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "SimpleSinatraAppvpcPrivateSubnet3RouteTable4F187B41"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet3NATGatewayF977DC7E"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/PrivateSubnet3/DefaultRoute"
+      }
+    },
+    "SimpleSinatraAppvpcIGW1138DA09": {
+      "Type": "AWS::EC2::InternetGateway",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-vpc"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/IGW"
+      }
+    },
+    "SimpleSinatraAppvpcVPCGW03DC3D9D": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        },
+        "InternetGatewayId": {
+          "Ref": "SimpleSinatraAppvpcIGW1138DA09"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-vpc/VPCGW"
+      }
+    },
+    "SimpleSinatraAppsg9DCDCA81": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "NonProdSinatraStack/Simple-Sinatra-App-sg",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1"
+          }
+        ],
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "175.34.139.197/32",
+            "Description": "SSH from your IP",
+            "FromPort": 22,
+            "IpProtocol": "tcp",
+            "ToPort": 22
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "HTTP from anywhere",
+            "FromPort": 80,
+            "IpProtocol": "tcp",
+            "ToPort": 80
+          }
+        ],
+        "VpcId": {
+          "Ref": "SimpleSinatraAppvpcD1A309B2"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-sg/Resource"
+      }
+    },
+    "SimpleSinatraAppec2InstanceRole7582E3E6": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ec2.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-ec2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-ec2/InstanceRole/Resource"
+      }
+    },
+    "SimpleSinatraAppec2InstanceRoleDefaultPolicy8A026138": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "cloudformation:DescribeStackResource",
+                "cloudformation:SignalResource"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "AWS::StackId"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "SimpleSinatraAppec2InstanceRoleDefaultPolicy8A026138",
+        "Roles": [
+          {
+            "Ref": "SimpleSinatraAppec2InstanceRole7582E3E6"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-ec2/InstanceRole/DefaultPolicy/Resource"
+      }
+    },
+    "SimpleSinatraAppec2InstanceProfileA3A7465A": {
+      "Type": "AWS::IAM::InstanceProfile",
+      "Properties": {
+        "Roles": [
+          {
+            "Ref": "SimpleSinatraAppec2InstanceRole7582E3E6"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-ec2/InstanceProfile"
+      }
+    },
+    "SimpleSinatraAppec2495AF881": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "AvailabilityZone": "ap-southeast-2a",
+        "IamInstanceProfile": {
+          "Ref": "SimpleSinatraAppec2InstanceProfileA3A7465A"
+        },
+        "ImageId": {
+          "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamznamihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+        },
+        "InstanceType": "t2.micro",
+        "KeyName": "SinatraKP",
+        "SecurityGroupIds": [
+          {
+            "Fn::GetAtt": [
+              "SimpleSinatraAppsg9DCDCA81",
+              "GroupId"
+            ]
+          }
+        ],
+        "SubnetId": {
+          "Ref": "SimpleSinatraAppvpcPublicSubnet1SubnetB31FA0A1"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "NonProdSinatraStack/Simple-Sinatra-App-ec2"
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\nyum install -y aws-cfn-bootstrap\nyum install -y ruby24\nalternatives --set ruby /usr/bin/ruby2.4\ngem install bundler\n# fingerprint: c87c2b74604f1aa4\n(\n  set +e\n  /opt/aws/bin/cfn-init -v --region ",
+                {
+                  "Ref": "AWS::Region"
+                },
+                " --stack ",
+                {
+                  "Ref": "AWS::StackName"
+                },
+                " --resource SimpleSinatraAppec2495AF881 -c default\n  /opt/aws/bin/cfn-signal -e $? --region ",
+                {
+                  "Ref": "AWS::Region"
+                },
+                " --stack ",
+                {
+                  "Ref": "AWS::StackName"
+                },
+                " --resource SimpleSinatraAppec2495AF881\n  cat /var/log/cfn-init.log >&2\n)"
+              ]
+            ]
+          }
+        }
+      },
+      "DependsOn": [
+        "SimpleSinatraAppec2InstanceRoleDefaultPolicy8A026138",
+        "SimpleSinatraAppec2InstanceRole7582E3E6"
+      ],
+      "CreationPolicy": {
+        "ResourceSignal": {
+          "Count": 1,
+          "Timeout": "PT5M"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/Simple-Sinatra-App-ec2/Resource",
+        "AWS::CloudFormation::Init": {
+          "configSets": {
+            "default": [
+              "config"
+            ]
+          },
+          "config": {
+            "files": {
+              "/root/config.ru": {
+                "content": "require './helloworld'\nrun Sinatra::Application\n\t\n",
+                "encoding": "plain",
+                "mode": "000644",
+                "owner": "root",
+                "group": "root"
+              },
+              "/root/Gemfile": {
+                "content": "source 'http://rubygems.org'\ngem 'sinatra'\n",
+                "encoding": "plain",
+                "mode": "000644",
+                "owner": "root",
+                "group": "root"
+              },
+              "/root/helloworld.rb": {
+                "content": "require 'sinatra'\nget '/' do\n  \"Hello World!\"\nend\n",
+                "encoding": "plain",
+                "mode": "000644",
+                "owner": "root",
+                "group": "root"
+              },
+              "/root/init.sh": {
+                "content": "#!/bin/sh\n/usr/local/bin/bundle install\n/usr/local/bin/rackup -p80 --host 0.0.0.0 &",
+                "encoding": "plain",
+                "mode": "000644",
+                "owner": "root",
+                "group": "root"
+              }
+            },
+            "commands": {
+              "000": {
+                "command": "chmod +x /root/init.sh"
+              }
+            }
+          }
+        }
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQwWrDMBBEvyV3Wa1NSM8hlOBLK+ySa1krG7qJLRlplRCM/72yldT0tG+HYTSrQuZv8nUFN5/p4yVrqZFDzaAvIkrfA+pCDodei93JHNROqNC0pOvQGORJW6iygfELmhYXfdG23ltNwGTNn3mC91JN4wN4D4w3uAvl6BpxCS4No4v8NKQmj23LsetPh4ZFjTo44vve2dDPHf4JpfEMRmOKTDwKgk4OlU2l56lsPHB+ZaGnXzl7ohbHUVTobXApTYGDDmPJafkM3If0IQ/LKIw9ojz7l2u+kflaFquzJ8pcMEwdyirNX9P2qeCJAQAA"
+      },
+      "Metadata": {
+        "aws:cdk:path": "NonProdSinatraStack/CDKMetadata/Default"
+      }
+    }
+  },
+  "Parameters": {
+    "SsmParameterValueawsserviceamiamazonlinuxlatestamznamihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter": {
+      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+      "Default": "/aws/service/ami-amazon-linux-latest/amzn-ami-hvm-x86_64-gp2"
+    },
+    "BootstrapVersion": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+    }
+  },
+  "Outputs": {
+    "SimpleSinatraApppublicIp": {
+      "Value": {
+        "Fn::GetAtt": [
+          "SimpleSinatraAppec2495AF881",
+          "PublicIp"
+        ]
+      },
+      "Export": {
+        "Name": "Simple-Sinatra-App-publicIp"
+      }
+    },
+    "SimpleSinatraApppublicDns": {
+      "Value": {
+        "Fn::GetAtt": [
+          "SimpleSinatraAppec2495AF881",
+          "PublicDnsName"
+        ]
+      },
+      "Export": {
+        "Name": "Simple-Sinatra-App-publicDns"
+      }
+    }
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ],
+                  {
+                    "Ref": "BootstrapVersion"
+                  }
+                ]
+              }
+            ]
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+        }
+      ]
+    }
+  }
+}
