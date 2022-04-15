@@ -37,9 +37,13 @@ SinatraCDK
 |	   |	cdk-stack.ts
 |	   |	props.ts
 |	   |
+| 	└──cdk.out
+|	   |	*.json
+|	   | 
 ```
 
 - The cdk folder structure stores all the infrastructure IaC configuration.
+- The cdk.out folder contains the compiled CloudFormation json template to be deployed.
 - The bin folder stores the entry point of the CDK application 'cdk.ts'. It loads the stack defined in 'lib/cdk-stack.ts'.
 - The configuration.ts file in bin/ stores any variable configuration for this project so you are able to define account, region, userdata, EC2 sizing, ami... etc.
 - The props.ts file in lib/ stores the interfaces for the 'SinatraStackProps'.
