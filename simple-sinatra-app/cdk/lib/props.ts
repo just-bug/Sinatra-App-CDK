@@ -24,9 +24,12 @@ interface AssetProps {
 export interface SinatraStackProps extends StackProps {
     appName: string
     az: string[]
+    maxAzs: number
+    natGws: number
     instance: Ec2InstanceProps
     sgRules: SGRuleProps[]
-    cidr: string
+    cidrIp: string
+    cidrMask: string
     cfninitAssets: AssetProps[]
     cfninitCommands: string[]
 }

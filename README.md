@@ -5,12 +5,13 @@ This document describes the implementation of the Simple Sinatra App. The purpos
 # Assumptions
 Listed are the assumptions made when building the infrastructure:
 
-- The server is to be hosted in a new VPC with a CIDR of 10.0.0.0/16.
+- The server is to be hosted in a new VPC with a CIDR of 10.0.0.0/28 (smallest available on AWS).
+- The VPC only has one public subnet.
 - The server is hosted on AZ ap-southeast-2a for latency.
 - The server is running on a small 'free-tier' T2 Micro for cost efficiency.
 - The server is running on a lightweight 'free-tier' Amazon Linux 2 AMI.
 - The server is to be used in a public subnet for internet access.
--- As opposed to sitting behind a Load Balancer in a private subnet, this solution is not 'best-practice' but will cut down on paying for a bastion host as well as a load balancer.
+  - As opposed to sitting behind a Load Balancer in a private subnet, this solution is not 'best-practice' but will cut down on paying for a bastion host as well as a load balancer.
 
 # File Structure
 
@@ -93,3 +94,5 @@ example: `ssh -i "SinatraKP.pem" ec2-user@ec2-54-206-53-245.ap-southeast-2.compu
 - For security best practice, the server should be deployed in a private subnet behind a load balancer and with a bastion host for ssh access.
 - The solution isn't fully automated as there is a manual step to run the init.sh script, I wasn't able to figure out a way to run the commands via userdata/cfn-init but maybe a lambda or pipeline step could be utilised to run the script post deployment.
 - A pipeline using a service account could be created for a more simplified/automated deployment.
+- The VPC is created with a CIDR of 10.0.0.0/28 (smallest available), no NAT Gateways (since it's deployed in a public subnet), 1 public subnet, and no private subnet. This is done for cost reduction. If the VPC is to be used for more than just a simple sinatra application, high availability is required, or the application is to be moved to a private subnet then this config should be changed to include NAT Gateways and/or more subnets.
+- The public cidr uses the whole VPC cidr range available so this will also need to change if a private subnet is introduced.

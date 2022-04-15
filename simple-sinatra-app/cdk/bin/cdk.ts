@@ -11,9 +11,12 @@ config.accounts.forEach((account) => {
     appName: config.appName,
     env: account.env,
     az: account.az,
+    maxAzs: account.maxAzs,
+    natGws: 0,
     instance: config.ec2inst,
     sgRules: config.sgRules,
-    cidr: account.cidr,
+    cidrIp: account.cidrIp,
+    cidrMask: account.cidrMask,
     cfninitAssets: config.cfninitAssets,
     cfninitCommands: config.cfninitCommands
   });

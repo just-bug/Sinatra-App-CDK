@@ -4,13 +4,21 @@ import { Construct } from 'constructs';
 import { SinatraStackProps } from './props';
 import { SGDirection } from '../bin/configuration'
 
-
 export class SinatraStack extends Stack {
   constructor(scope: Construct, id: string, props: SinatraStackProps) {
     super(scope, id, props);
 
     const vpc = new Vpc(this, props.appName + '-vpc', {
-      cidr: props.cidr
+      cidr: props.cidrIp + "/" + props.cidrMask,
+      natGateways: props.natGws,
+      maxAzs: props.maxAzs,
+      subnetConfiguration: [
+        {
+          cidrMask: +props.cidrMask,
+          name: 'Public',
+          subnetType: SubnetType.PUBLIC,
+        }
+      ]
     })
 
     const publicSubnet = vpc.selectSubnets({

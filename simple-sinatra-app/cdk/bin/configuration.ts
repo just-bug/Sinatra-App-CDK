@@ -14,8 +14,11 @@ export const accounts = [
             account: '087901013023',
             region: 'ap-southeast-2'
         },
-        az: ['ap-southeast-2a'],
-        cidr: "10.0.0.0/16"
+        az: ['ap-southeast-2a'], // Only 1 AZ configured (chosen in sorted order so 'a' will be first)
+        cidrMask: "28",
+        cidrIp: "10.0.0.0",
+        maxAzs: 1,
+        natGws: 0
     }
 ]
 
@@ -37,7 +40,7 @@ export const ec2inst =
 export const sgRules = [
     {
         direction: SGDirection.ingress,
-        ip: Peer.ipv4('175.34.139.197/32'),
+        ip: Peer.ipv4('122.110.135.48/32'),
         port: Port.tcp(22),
         decription: 'SSH from your IP'
     },
