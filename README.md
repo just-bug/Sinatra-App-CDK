@@ -6,7 +6,7 @@ This document describes the implementation of the Simple Sinatra App. The purpos
 Listed are the assumptions made when building the infrastructure:
 
 - The server is to be hosted in a new VPC with a CIDR of 10.0.0.0/16.
-- The server is hosted on AZ ap-southeast-2a for latency.
+- The server is hosted on AZ ap-southeast-2a for better latency.
 - The server is running on a small 'free-tier' T2 Micro for cost efficiency.
 - The server is running on a lightweight 'free-tier' Amazon Linux 2 AMI.
 - The server is to be used in a public subnet for internet access.
