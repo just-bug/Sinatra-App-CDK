@@ -1,6 +1,6 @@
 # Simple Sinatra App - Documentation
 
-This document describes the implementation of the Simple Sinatra App. The purpose of the application is to display 'Hello World!' when visiting the public DNS of the EC2 instance. The instance is running Rack to hosting a lightweight web application with Ruby. The solution is built and is deployed via AWS CDK.
+This document describes the implementation of the Simple Sinatra App. The purpose of the application is to display 'Hello World!' when visiting the public DNS of the EC2 instance. The instance is running Rack to host a lightweight web application with Ruby. The solution is built and is deployed via AWS CDK.
 
 # Assumptions
 Listed are the assumptions made when building the infrastructure:
