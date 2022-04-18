@@ -91,7 +91,7 @@ example: `ssh -i "SinatraKP.pem" ec2-user@ec2-54-206-53-245.ap-southeast-2.compu
 
 - CDK constructs could be utilised to make the cdk code more reusable and to easily change configuration.
 - For security best practice, the server should be deployed in a private subnet behind a load balancer, WAF for firewall protection, NAT GW, and with a bastion host for ssh access. This wasn't done to reduce costs since it is a simple 'Hello World!' application.
-- For fault tolerance, the application should be deployed in multiple AZs with a load balancer distributing traffic. As above, this wasn't done for simplification/cost reduction.
+- For fault tolerance/high availability, the application should be deployed in multiple AZs with a load balancer distributing traffic. The load balancer can be configured to do health checks and automatically replace the instance if it is unhealthy. As above, this wasn't done for simplification/cost reduction.
 - The instance public IP/DNS is being used for HTTP access, it would be better to set up a domain and A record that routes to an EIP. This way the IP wont change if the server is stopped and you have a readable domain for HTTP traffic.
 - A pipeline using a service account could be created for a more simplified/automated deployment.
 - The solution isn't fully automated as there is a manual step to run the init.sh script, I wasn't able to figure out a way to run the commands via userdata/cfn-init but maybe a lambda or pipeline step could be utilised to run the script post deployment.
