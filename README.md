@@ -10,8 +10,8 @@ Listed are the assumptions made when building the infrastructure:
 - The server is hosted on AZ ap-southeast-2a for latency.
 - The server is running on a small 'free-tier' T2 Micro for cost efficiency.
 - The server is running on a lightweight 'free-tier' Amazon Linux 2 AMI.
-- The server is to be used in a public subnet for internet access.
-  - As opposed to sitting behind a Load Balancer in a private subnet, this solution is not 'best-practice' but will cut down on paying for a bastion host as well as a load balancer.
+- The server is to available via a public DNS and placed in a public subnet for internet access.
+  - As opposed to sitting behind a Load Balancer in a private subnet, this solution is not 'best-practice' but will cut down on paying for a bastion host, NAT GW, and a load balancer.
 
 # File Structure
 
@@ -24,7 +24,6 @@ SinatraCDK
 └───simple-sinatra-app
 │   │   config.ru
 │   │   Gemfile
-|   |	Gemfile.lock
 |   |	helloworld.rb
 |   |	init.sh
 │   │
@@ -91,7 +90,9 @@ example: `ssh -i "SinatraKP.pem" ec2-user@ec2-54-206-53-245.ap-southeast-2.compu
 # Improvements
 
 - CDK constructs could be utilised to make the cdk code more reusable and to easily change configuration.
-- For security best practice, the server should be deployed in a private subnet behind a load balancer and with a bastion host for ssh access.
+- For security best practice, the server should be deployed in a private subnet behind a load balancer, WAF for firewall protection, NAT GW, and with a bastion host for ssh access. This wasn't done to reduce costs since it is a simple 'Hello World!' application.
+- For fault tolerance, the application should be deployed in multiple AZs with a load balancer distributing traffic. As above, this wasn't done for simplification/cost reduction.
+- The instance public IP/DNS is being used for HTTP access, it would be better to set up a domain and A record that routes to an EIP. This way the IP wont change if the server is stopped and you have a readable domain for HTTP traffic.
 - A pipeline using a service account could be created for a more simplified/automated deployment.
 - The solution isn't fully automated as there is a manual step to run the init.sh script, I wasn't able to figure out a way to run the commands via userdata/cfn-init but maybe a lambda or pipeline step could be utilised to run the script post deployment.
 - There is also the manual step of creating a Key Pair on the console, this could be automated in a pipeline step.
